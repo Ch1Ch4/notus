@@ -51,7 +51,7 @@
                                     @endif
                                 </td>
                                 <td class="flex gap-3 w-full px-4 py-2">
-                                    <a href="{{ route('categories.show', $categories) }}" class="hover:underline">View</a>
+                                    <a href="{{ route('categories.show', $category) }}" class="hover:underline">View</a>
                                     <a href="{{ route('categories.edit', $category->id) }}" class="hover:underline">
                                         Edit
                                     </a>
