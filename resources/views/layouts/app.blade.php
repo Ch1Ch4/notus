@@ -29,7 +29,7 @@
                 @if ($errors->any())
                     <div class="max-w-7xl mx-auto mt-4 px-4 sm:px-6 lg:px-8">
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-white" role="alert">
-                            <strong class="font-bold">Whoops!</strong> There were some problems with your input.
+                            <strong class="font-bold">Whoops!</strong>
                             <ul class="mt-2 list-disc list-inside">
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
