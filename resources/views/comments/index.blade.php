@@ -23,6 +23,7 @@
                             <th class="px-4 py-2 text-left">Content</th>
                             <th class="px-4 py-2 text-left">Rating</th>
                             <th class="px-4 py-2 text-left">Approved</th>
+                            <th class="px-4 py-2 text-left">Product</th>
                             <th class="px-4 py-2 text-left">Actions</th>
                         </tr>
                         </thead>
@@ -43,8 +44,8 @@
                                         <span class="text-red-500">❌</span>
                                     @endif
                                 </td>
+                                <td class="px-4 py-2">{{ $comment->product->name }}</td>
                                 <td class="flex gap-3 w-full px-4 py-2">
-                                    <a href="{{ route('comments.show', $comment) }}" class="hover:underline">View</a>
                                     <a href="{{ route('comments.edit', $comment->id) }}" class="hover:underline">
                                         Edit
                                     </a>
@@ -64,6 +65,10 @@
                     @if ($comments->isEmpty())
                         <p class="text-center text-gray-500 dark:text-gray-400 mt-4">No comments found.</p>
                     @endif
+
+                    <div class="mt-4">
+                        {{ $comments->links() }}
+                    </div>
 
                 </div>
             </div>
