@@ -12,4 +12,14 @@ class Product extends Model
 
     protected $fillable = ['name', 'description', 'price'];
 
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function featuredImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('is_featured', true)->latest();
+    }
+
 }

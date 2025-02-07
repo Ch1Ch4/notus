@@ -25,7 +25,7 @@
                             <th class="px-4 py-2 text-left">Name</th>
                             <th class="px-4 py-2 text-left">Description</th>
                             <th class="px-4 py-2 text-left">Price</th>
-{{--                            <th class="px-4 py-2 text-left">Images</th>--}}
+                            <th class="px-4 py-2 text-left">Images</th>
                             <th class="px-4 py-2 text-left">Actions</th>
                         </tr>
                         </thead>
@@ -36,7 +36,15 @@
                                 <td class="px-4 py-2">{{ $product->name }}</td>
                                 <td class="px-4 py-2">{{ $product->description }}</td>
                                 <td class="px-4 py-2">{{ $product->price }}</td>
-{{--                                <td class="px-4 py-2">{{ $product->images }}</td>--}}
+                                @if($product->featuredImage)
+                                    <td class="px-4 py-2">
+                                        <img src="{{ asset('storage/' . $product->featuredImage->image_path) }}" alt="Featured Image" class="w-12 h-12 object-cover">
+                                    </td>
+                                @else
+                                    <td class="px-4 py-2">
+                                    </td>
+                                @endif
+
                                 <td class="flex gap-3 w-full px-4 py-2">
                                     <a href="{{ route('products.show', $products) }}" class="hover:underline">View</a>
                                     <a href="{{ route('products.edit', $product->id) }}" class="hover:underline">

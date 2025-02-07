@@ -35,6 +35,27 @@
                             <p class="mt-2 text-gray-700 dark:text-gray-300">{{ $product->price }}</p>
                         </div>
 
+                        <div class="mt-4">
+                            <strong>Images:</strong>
+                            <div class="flex flex-wrap space-x-2">
+                                @foreach($product->images as $image)
+                                    <div class="mt-10 relative inline-block">
+                                        <img src="{{ asset('storage/' . $image->image_path) }}" alt="Product Image" class="w-full max-h-24 object-cover rounded-lg">
+
+                                        @if($image->is_featured)
+                                            <span class="absolute top-0 left-0 bg-blue-500 text-white text-xs px-2 py-1 rounded-br-lg">Featured</span>
+                                        @endif
+
+                                        <form action="{{ route('product-images.destroy', $image->id) }}" method="POST" class="mt-1">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-sm text-red-500 hover:text-red-700">Delete</button>
+                                        </form>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
