@@ -35,4 +35,24 @@ class Product extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function scopeFilterByCategory($query, $filters = [])
+    {
+        $query->when(isset($filters['category_id']), function ($query) use ($filters) {
+            $query->whereHas('categories', function ($query) use ($filters) {
+                $query->where('categories.id', $filters['category_id']);
+            });
+        });
+    }
+
+    public function scopeFilterByPrice($query, $filters = [])
+    {
+        $query->when(isset($filters['min_price']), function ($query) use ($filters) {
+            $query->where('price', '>=', $filters['min_price']);
+        });
+
+        $query->when(isset($filters['max_price']), function ($query) use ($filters) {
+            $query->where('price', '<=', $filters['max_price']);
+        });
+    }
+
 }
