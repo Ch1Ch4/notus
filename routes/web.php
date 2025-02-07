@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
@@ -26,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('comments', CommentController::class)->only(['index', 'edit', 'store', 'destroy']);
+
     Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
 });
 
