@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 
@@ -24,7 +25,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $categories = Category::all();
+
+        return view('products.create', compact('categories'));
 
     }
 
@@ -40,6 +43,8 @@ class ProductController extends Controller
         if ($request->hasFile('featured_image')) {
             $this->saveProductImage($product->id, $request->file('featured_image'), true);
         }
+
+        $product->categories()->attach($request->categories);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -57,7 +62,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return view('products.show', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 
@@ -66,7 +71,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('products.edit', [
+            'product' => $product,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -89,6 +97,8 @@ class ProductController extends Controller
                 $this->saveProductImage($product->id, $image, false);
             }
         }
+
+        $product->categories()->sync($validated['categories']);
 
         $product->save();
 

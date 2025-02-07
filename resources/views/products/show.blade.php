@@ -35,6 +35,13 @@
                             <p class="mt-2 text-gray-700 dark:text-gray-300">{{ $product->price }}</p>
                         </div>
 
+                        <div class="mb-4">
+                            <strong>Categories:</strong>
+                                @foreach($product->categories as $category)
+                                    <p>{{ $category->name }}</p>
+                                @endforeach
+                        </div>
+
                         <div class="mt-4">
                             <strong>Images:</strong>
                             <div class="flex flex-wrap space-x-2">

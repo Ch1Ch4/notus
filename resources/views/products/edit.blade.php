@@ -32,6 +32,18 @@
                         </div>
 
                         <div class="mb-4">
+                            <label for="categories" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Categories</label>
+                            <select name="categories[]" id="categories" multiple
+                                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:focus:ring-blue-600">
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ $product->categories->contains($category->id) ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
                             <label for="featured_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Featured Image</label>
                             <input type="file" name="featured_image" id="featured_image"
                                    class="mt-1 block w-full text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 dark:focus:ring-blue-600">

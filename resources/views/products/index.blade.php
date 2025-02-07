@@ -25,6 +25,7 @@
                             <th class="px-4 py-2 text-left">Name</th>
                             <th class="px-4 py-2 text-left">Description</th>
                             <th class="px-4 py-2 text-left">Price</th>
+                            <th class="px-4 py-2 text-left">Categories</th>
                             <th class="px-4 py-2 text-left">Images</th>
                             <th class="px-4 py-2 text-left">Actions</th>
                         </tr>
@@ -36,6 +37,11 @@
                                 <td class="px-4 py-2">{{ $product->name }}</td>
                                 <td class="px-4 py-2">{{ $product->description }}</td>
                                 <td class="px-4 py-2">{{ $product->price }}</td>
+                                <td class="px-4 py-2">
+                                    @foreach($product->categories as $category)
+                                        <span class="text-sm text-gray-600 dark:text-gray-400">{{ $category->name }}</span>@if(!$loop->last), @endif
+                                    @endforeach
+                                </td>
                                 @if($product->featuredImage)
                                     <td class="px-4 py-2">
                                         <img src="{{ asset('storage/' . $product->featuredImage->image_path) }}" alt="Featured Image" class="w-12 h-12 object-cover">
