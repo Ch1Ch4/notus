@@ -6,7 +6,6 @@ use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\ProductImage;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -23,9 +22,9 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Product $product)
+    public function create()
     {
-        return view('products.create', compact('product'));
+        return view('products.create');
 
     }
 
