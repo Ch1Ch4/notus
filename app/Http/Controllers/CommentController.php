@@ -12,7 +12,7 @@ class CommentController extends Controller
     public function index()
     {
         return view('comments.index', [
-            'comments' => Comment::all()
+            'comments' => Comment::with('product')->paginate(10),
         ]);
     }
 

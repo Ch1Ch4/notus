@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('comments', CommentController::class)->only(['index', 'edit', 'store', 'destroy']);
+    Route::resource('comments', CommentController::class)->only(['index', 'edit', 'update', 'destroy']);
 
     Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
 });
