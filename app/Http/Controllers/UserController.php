@@ -6,7 +6,6 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -66,15 +65,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->role = $validated['role'];
-
-        if (!empty($validated['password'])) {
-            $user->password = Hash::make($validated['password']);
-        }
-
-        $user->save();
+        $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
