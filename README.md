@@ -84,19 +84,17 @@ Before you begin, make sure you have the following installed on your computer:
    ```
 10. **Test users**:
 
-    Admin role
+   Admin role
    ```bash
    email: admin@example.com
    password: password
    ```
 
-    Moderator role
-    ```bash
-    email: moderator@example.com
-    password: password
-    ```
-
-
+   Moderator role
+   ```bash
+   email: moderator@example.com
+   password: password
+   ```
 
 ## Configuration
 
