@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,12 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $parent = Category::inRandomOrder()->where('depth', '<', 3)->first();
+
         return [
-            //
+            'name' => fake()->word(),
+            'parent_id' => $parent?->id,
+            'depth' => $parent ? $parent->depth + 1 : 1,
         ];
     }
 }
