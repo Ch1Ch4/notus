@@ -1,0 +1,58 @@
+CREATE TABLE `visitors` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(255) NOT NULL,
+    `last_name` varchar(255) NOT NULL,
+    `email` varchar(255) NOT NULL UNIQUE,
+    `phone` varchar(255) NOT NULL UNIQUE,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `locations` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `name` varchar(255) NOT NULL,
+     `education_level` int(11) NOT NULL,
+     `created_at` timestamp NULL DEFAULT NULL,
+     `updated_at` timestamp NULL DEFAULT NULL,
+     PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `visits` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `visit_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `visitors`(`id`),
+  FOREIGN KEY (`location_id`) REFERENCES `locations`(`id`)
+);
+
+CREATE TABLE `education_levels` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `user_id` int(11) NOT NULL,
+    `location_id` int(11) NOT NULL,
+    `level` int(11) NOT NULL,
+    `passed_date` date NOT NULL,
+    `expiration_date` date NOT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`user_id`) REFERENCES `visitors`(`id`),
+    FOREIGN KEY (`location_id`) REFERENCES `locations`(`id`)
+);
+
+CREATE TABLE `check_ins` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `visit_id` int(11) NOT NULL,
+    `check_in` datetime NOT NULL,
+    `check_out` datetime DEFAULT NULL,
+    `user_signature` varchar(255) NOT NULL,
+    `gdpr_agreement` boolean NOT NULL DEFAULT 0,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`visit_id`) REFERENCES `visits`(`id`)
+);
