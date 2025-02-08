@@ -82,6 +82,21 @@ Before you begin, make sure you have the following installed on your computer:
    ```bash
    http://localhost
    ```
+10. **Test users**:
+
+    Admin role
+   ```bash
+   email: admin@example.com
+   password: password
+   ```
+
+    Moderator role
+    ```bash
+    email: moderator@example.com
+    password: password
+    ```
+
+
 
 ## Configuration
 
@@ -116,6 +131,17 @@ Here are some useful commands you can use with Sail:
 
   ```bash
   ./vendor/bin/sail test
+  ```
+- **Check Route list**:
+
+  ```bash
+  ./vendor/bin/sail php artisan route:list
+  ```
+
+- **Check API Route list**:
+
+  ```bash
+  ./vendor/bin/sail php artisan route:list | grep api
   ```
 
 ---

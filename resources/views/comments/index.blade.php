@@ -31,11 +31,11 @@
                         <tbody>
                         @foreach ($comments as $comment)
                             <tr class="border-t dark:border-gray-600">
-                                <td class="px-4 py-2">{{ $comment->id }}</td>
-                                <td class="px-4 py-2">{{ $comment->author }}</td>
-                                <td class="px-4 py-2">{{ $comment->email }}</td>
-                                <td class="px-4 py-2">{{ $comment->content }}</td>
-                                <td class="px-4 py-2">
+                                <td class="px-4 py-2 text-sm">{{ $comment->id }}</td>
+                                <td class="px-4 py-2 text-sm">{{ $comment->author }}</td>
+                                <td class="px-4 py-2 text-sm">{{ $comment->email }}</td>
+                                <td class="px-4 py-2 text-sm">{{ $comment->content }}</td>
+                                <td class="px-4 py-2 text-sm">
                                     {{ str_repeat('⭐', $comment->rating) }}
                                 </td>
                                 <td class="px-4 py-2">
@@ -45,7 +45,7 @@
                                         <span class="text-red-500">❌</span>
                                     @endif
                                 </td>
-                                <td class="px-4 py-2">{{ $comment->product->name }}</td>
+                                <td class="px-4 py-2 text-sm">{{ $comment->product->name }}</td>
                                 <td class="px-4 py-2 text-sm">{{ $comment->created_at->format('H:i:s d.m.Y') }}</td>
                                 <td class="flex gap-3 w-full px-4 py-2">
                                     <a href="{{ route('comments.edit', $comment->id) }}" class="hover:underline">
