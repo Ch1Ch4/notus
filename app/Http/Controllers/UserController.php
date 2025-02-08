@@ -6,7 +6,6 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -16,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::latest()->paginate()
+            'users' => User::latest()->paginate(10)
         ]);
     }
 
@@ -66,15 +65,7 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-        $user->role = $validated['role'];
-
-        if (!empty($validated['password'])) {
-            $user->password = Hash::make($validated['password']);
-        }
-
-        $user->save();
+        $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
@@ -84,6 +75,11 @@ class UserController extends Controller
      */
     public function destroy(User $user): RedirectResponse
     {
+        if (auth()->id() === $user->id) {
+            return redirect()->route('users.index')
+                ->withErrors('You cannot delete your own account.');
+        }
+
         $user->delete();
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully.');
