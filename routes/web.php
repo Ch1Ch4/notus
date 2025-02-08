@@ -6,14 +6,15 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('products.index');
+    return redirect()->route('comments.index');
 });
 
 Route::get('/dashboard', function () {
-    return redirect()->route('products.index');
+    return redirect()->route('comments.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -24,12 +25,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('users', UserController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class)->middleware(AdminMiddleware::class);
+    Route::resource('categories', CategoryController::class)->middleware(AdminMiddleware::class);
+    Route::resource('products', ProductController::class)->middleware(AdminMiddleware::class);
     Route::resource('comments', CommentController::class)->only(['index', 'edit', 'update', 'destroy']);
 
-    Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
+    Route::delete('/product-images/{id}', [ProductImageController::class, 'destroy'])->name('product-images.destroy')->middleware(AdminMiddleware::class);;
 });
 
 require __DIR__.'/auth.php';
