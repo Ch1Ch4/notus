@@ -95,6 +95,11 @@ Before you begin, make sure you have the following installed on your computer:
    email: moderator@example.com
    password: password
    ```
+11. **Make storage available**:
+
+   ```bash
+   ./vendor/bin/sail php artisan storage:link
+   ```
 
 ## Configuration
 
