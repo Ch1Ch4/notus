@@ -99,11 +99,11 @@ Before you begin, make sure you have the following installed on your computer:
    ```
 12. **The application is now running**:
 
-You should now be able to access the application at the following address in your browser:
+   You should now be able to access the application at the following address in your browser:
 
-```bash
-http://localhost
-```
+   ```bash
+   http://localhost
+   ```
 
 ## Configuration
 
