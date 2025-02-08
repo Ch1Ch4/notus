@@ -74,7 +74,6 @@ Before you begin, make sure you have the following installed on your computer:
    ```bash
    ./vendor/bin/sail artisan db:seed
    ```
-
 9. **The application is now running**:
 
    You should now be able to access the application at the following address in your browser:
@@ -82,7 +81,13 @@ Before you begin, make sure you have the following installed on your computer:
    ```bash
    http://localhost
    ```
-10. **Test users**:
+10. **NPM install and build**:
+
+   ```bash
+   ./vendor/bin/sail npm install
+   ./vendor/bin/sail npm run build
+   ```
+11. **Test users**:
 
    Admin role
    ```bash
@@ -95,7 +100,7 @@ Before you begin, make sure you have the following installed on your computer:
    email: moderator@example.com
    password: password
    ```
-11. **Make storage available**:
+12. **Make storage available**:
 
    ```bash
    ./vendor/bin/sail php artisan storage:link
